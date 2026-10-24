@@ -1,0 +1,371 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        .sidebar {
+            width: 220px;
+            height: 100vh;
+            position: fixed;
+            background: #172554;
+            color: white;
+            padding: 25px 15px;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 14px;
+            margin: 6px 0;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .sidebar a:hover {
+            background: #315efb;
+        }
+
+        main {
+            margin-left: 220px;
+            padding: 25px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            gap: 12px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .card, .section {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px #00000008;
+        }
+
+        .card h3 {
+            color: #64748b;
+            font-size: 15px;
+        }
+
+        .card p {
+            font-size: 28px;
+            font-weight: bold;
+            margin-top: 12px;
+            color: #315efb;
+        }
+
+        .section {
+            margin-bottom: 22px;
+            overflow-x: auto;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 450px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 13px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background: #eff4ff;
+        }
+
+        .progress {
+            width: 100%;
+            height: 10px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: #16a36a;
+            border-radius: 10px;
+        }
+
+        .announcement {
+            padding: 12px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .announcement:last-child {
+            border-bottom: none;
+        }
+
+        .announcement p {
+            color: #64748b;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 800px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+            }
+
+            .sidebar h2 {
+                margin-bottom: 10px;
+            }
+
+            .sidebar a {
+                display: inline-block;
+                padding: 9px;
+                font-size: 13px;
+            }
+
+            main {
+                margin-left: 0;
+                padding: 15px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <aside class="sidebar">
+        <h2>Student Portal</h2>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#details">Student Details</a>
+        <a href="#results">Semester Results</a>
+        <a href="#attendance">Attendance</a>
+        <a href="#subjects">Subjects</a>
+        <a href="#exams">Exam Schedule</a>
+        <a href="#announcements">Announcements</a>
+    </aside>
+
+    <main id="dashboard">
+
+        <header>
+            <div>
+                <h1>Student Dashboard</h1>
+                <p>Welcome back, Shanmukh Uday!</p>
+            </div>
+            <p>NRI University</p>
+        </header>
+
+        <div class="cards">
+            <div class="card">
+                <h3>Current CGPA</h3>
+                <p>8.4 / 10</p>
+            </div>
+
+            <div class="card">
+                <h3>Overall Attendance</h3>
+                <p>95%</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Subjects</h3>
+                <p>6</p>
+            </div>
+        </div>
+
+        <section class="section" id="details">
+            <h2>Student Details</h2>
+            <p><b>Name:</b> Shanmukh Uday</p>
+            <p><b>College:</b> NRI University</p>
+            <p><b>Department:</b> Computer Science</p>
+            <p><b>Student ID:</b> DEMO-001</p>
+            <p><b>Semester:</b> Semester 1</p>
+        </section>
+
+        <section class="section" id="results">
+            <h2>Semester Results</h2>
+            <table>
+                <tr>
+                    <th>Semester</th>
+                    <th>SGPA</th>
+                    <th>Percentage</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>Semester 1</td>
+                    <td>8.4</td>
+                    <td>84%</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>Semester 2</td>
+                    <td>8.1</td>
+                    <td>81%</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>Semester 3</td>
+                    <td>--</td>
+                    <td>--</td>
+                    <td>In Progress</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="section" id="attendance">
+            <h2>Attendance Percentages</h2>
+
+            <p>Python - 92%</p>
+            <div class="progress">
+                <div class="progress-bar" style="width:92%"></div>
+            </div>
+
+            <br>
+            <p>Mathematics - 85%</p>
+            <div class="progress">
+                <div class="progress-bar" style="width:85%"></div>
+            </div>
+
+            <br>
+            <p>Web Development - 88%</p>
+            <div class="progress">
+                <div class="progress-bar" style="width:88%"></div>
+            </div>
+
+            <br>
+            <p>Digital Logic - 72%</p>
+            <div class="progress">
+                <div class="progress-bar"
+                     style="width:72%; background:#f59e0b"></div>
+            </div>
+        </section>
+
+        <section class="section" id="subjects">
+            <h2>Subject Information</h2>
+            <table>
+                <tr>
+                    <th>Subject Code</th>
+                    <th>Subject Name</th>
+                    <th>Credits</th>
+                    <th>Grade</th>
+                </tr>
+                <tr>
+                    <td>CS101</td>
+                    <td>Python Programming</td>
+                    <td>4</td>
+                    <td>A</td>
+                </tr>
+                <tr>
+                    <td>MA101</td>
+                    <td>Mathematics</td>
+                    <td>4</td>
+                    <td>A-</td>
+                </tr>
+                <tr>
+                    <td>CS103</td>
+                    <td>Web Development</td>
+                    <td>3</td>
+                    <td>B+</td>
+                </tr>
+                <tr>
+                    <td>CS105</td>
+                    <td>Digital Logic</td>
+                    <td>4</td>
+                    <td>B</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="section" id="exams">
+            <h2>Examination Schedule</h2>
+            <table>
+                <tr>
+                    <th>Date</th>
+                    <th>Subject</th>
+                    <th>Time</th>
+                    <th>Room</th>
+                </tr>
+                <tr>
+                    <td>04 Nov 2026</td>
+                    <td>Python Programming</td>
+                    <td>9:30 AM</td>
+                    <td>A-204</td>
+                </tr>
+                <tr>
+                    <td>07 Nov 2026</td>
+                    <td>Mathematics</td>
+                    <td>9:30 AM</td>
+                    <td>B-102</td>
+                </tr>
+                <tr>
+                    <td>10 Nov 2026</td>
+                    <td>Web Development</td>
+                    <td>1:30 PM</td>
+                    <td>C-01</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="section" id="announcements">
+            <h2>Announcements</h2>
+
+            <div class="announcement">
+                <b>Exam Timetable Published</b>
+                <p>Please check your examination dates and room numbers.</p>
+            </div>
+
+            <div class="announcement">
+                <b>Library Reminder</b>
+                <p>Return or renew borrowed library books on time.</p>
+            </div>
+
+            <div class="announcement">
+                <b>Lab Submission</b>
+                <p>Contact your faculty for practical submission deadlines.</p>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>

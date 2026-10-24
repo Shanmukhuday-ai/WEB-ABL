@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal portfolio website of Shanmukh Uday, student and aspiring web developer.">
+  <title>Shanmukh Uday | Personal Portfolio</title>
+
+  <style>
+    :root {
+      --bg: #0b1020;
+      --surface: #141c30;
+      --surface-2: #1b2640;
+      --text: #f2f5ff;
+      --muted: #b3bfd9;
+      --accent: #67e8f9;
+      --accent-2: #b7a0ff;
+      --border: #2b3856;
+      --shadow: 0 18px 55px #0003;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 86px;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(1100px, calc(100% - 36px));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #0b1020ef;
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      text-decoration: none;
+      font-weight: 850;
+      font-size: 1.15rem;
+    }
+
+    .brand span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: .92rem;
+      padding: 9px 11px;
+      border-radius: 9px;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--accent);
+      background: #67e8f915;
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      padding: 9px 12px;
+      border-radius: 9px;
+      cursor: pointer;
+    }
+
+    .hero {
+      min-height: 77vh;
+      display: grid;
+      grid-template-columns: 1.4fr .8fr;
+      align-items: center;
+      gap: 44px;
+      padding-block: 65px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: .8rem;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 7vw, 5.2rem);
+      line-height: 1.02;
+      margin: 18px 0;
+    }
+
+    h1 span {
+      color: var(--accent-2);
+    }
+
+    .hero p {
+      max-width: 640px;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      border: 1px solid transparent;
+      border-radius: 11px;
+      padding: 12px 17px;
+      font-weight: 750;
+      cursor: pointer;
+    }
+
+    .button.primary {
+      color: #091321;
+      background: var(--accent);
+    }
+
+    .button.secondary {
+      color: var(--text);
+      border-color: var(--border);
+      background: var(--surface);
+    }
+
+    .profile-art {
+      justify-self: center;
+      width: min(300px, 75%);
+      aspect-ratio: 1;
+      border-radius: 35% 65% 58% 42% / 45% 38% 62% 55%;
+      background: linear-gradient(145deg, var(--accent), var(--accent-2));
+      display: grid;
+      place-items: center;
+      color: #0b1020;
+      font-size: clamp(4rem, 10vw, 7rem);
+      font-weight: 900;
+      animation: float 5s ease-in-out infinite;
+    }
+
+    section {
+      padding-block: 62px;
+    }
+
+    .section-heading {
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      line-height: 1.15;
+      margin: 0;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      max-width: 700px;
+      margin-top: 10px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 17px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      transition: transform .25s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      margin: 5px 0 9px;
+      font-size: 1.15rem;
+    }
+
+    .card p,
+    .card li {
+      color: var(--muted);
+    }
+
+    .icon {
+      font-size: 1.7rem;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .skill {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: .9rem;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
+
+    .timeline-item {
+      border-left: 3px solid var(--accent-2);
+      padding: 5px 0 5px 18px;
+    }
+
+    .timeline-item h3 {
+      margin: 0;
+    }
+
+    .timeline-item p {
+      color: var(--muted);
+      margin: 5px 0 0;
+    }
+
+    .project-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .project-number {
+      color: var(--accent);
+      font-weight: 850;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 14px;
+    }
+
+    .tag {
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 4px 8px;
+      font-size: .78rem;
+    }
+
+    .resume-panel {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      background: linear-gradient(120deg, #172541, #211d43);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+    }
+
+    .resume-panel p {
+      color: var(--muted);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 18px;
+    }
+
+    .contact-link {
+      display: block;
+      text-decoration: none;
+      color: var(--muted);
+      overflow-wrap: anywhere;
+      margin-top: 9px;
+    }
+
+    .contact-link:hover {
+      color: var(--accent);
+    }
+
+    form {
+      display: grid;
+      gap: 12px;
+    }
+
+    label {
+      font-weight: 700;
+      font-size: .9rem;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      margin-top: 5px;
+      padding: 12px 13px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      color: var(--text);
+      background: #0b1020;
+      font: inherit;
+    }
+
+    textarea {
+      min-height: 125px;
+      resize: vertical;
+    }
+
+    .form-note {
+      color: var(--muted);
+      font-size: .86rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      padding: 25px 0;
+      text-align: center;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .nav {
+        flex-wrap: wrap;
+        padding-block: 12px;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        padding: 8px 0 10px;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        display: block;
+      }
+
+      .hero {
+        min-height: auto;
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 32px;
+        padding-block: 52px;
+      }
+
+      .profile-art {
+        grid-row: 1;
+        width: 190px;
+      }
+
+      .hero p {
+        margin-inline: auto;
+      }
+
+      .actions {
+        justify-content: center;
+      }
+
+      section {
+        padding-block: 45px;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="#home">Shanmukh<span>.dev</span></a>
+
+      <button class="menu-toggle" id="menuToggle"
+        aria-expanded="false" aria-controls="navLinks">
+        ☰ Menu
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#achievements">Achievements</a></li>
+        <li><a href="#resume">Resume</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero container" id="home">
+      <div>
+        <div class="eyebrow">Student · Aspiring Web Developer</div>
+
+        <h1>Hello, I'm<br><span>Shanmukh Uday.</span></h1>
+
+        <p>
+          I'm a student at NRI University, interested in technology,
+          creative problem-solving and building clean, user-friendly
+          websites. This portfolio is a work in progress as I keep learning.
+        </p>
+
+        <div class="actions">
+          <a class="button primary" href="#projects">
+            Explore my projects ↘
+          </a>
+
+          <a class="button secondary" href="#contact">
+            Get in touch
+          </a>
+        </div>
+      </div>
+
+      <div class="profile-art" aria-label="Initials S U">SU</div>
+    </section>
+
+    <section class="container reveal" id="about">
+      <div class="section-heading">
+        <div class="eyebrow">A little about me</div>
+        <h2>About Me</h2>
+
+        <p class="section-intro">
+          I enjoy discovering how websites work and turning ideas into
+          simple digital experiences. I'm developing my skills step by
+          step through practice and academic projects.
+        </p>
+      </div>
+
+      <div class="card-grid">
+        <article class="card">
+          <div class="icon">🎯</div>
+          <h3>My Goal</h3>
+          <p>
+            Build useful, accessible and responsive websites while
+            improving my programming skills.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="icon">🧩</div>
+          <h3>My Approach</h3>
+          <p>
+            Learn the basics, practice regularly, solve problems and
+            keep improving each project.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="icon">🌱</div>
+          <h3>Currently Learning</h3>
+          <p>
+            Web design fundamentals, HTML, CSS, responsive layouts
+            and programming basics.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="container reveal" id="education">
+      <div class="section-heading">
+        <div class="eyebrow">My learning journey</div>
+        <h2>Educational Qualifications</h2>
+
+        <p class="section-intro">
+          Add your exact course, year and previous school details before submitting.
+        </p>
+      </div>
+
+      <div class="card timeline">
+        <div class="timeline-item">
+          <h3>Undergraduate Studies</h3>
+          <p><strong>NRI University</strong> · Currently studying</p>
+          <p>Focus: academic learning and web development activities.</p>
+        </div>
+
+        <div class="timeline-item">
+          <h3>Previous Education</h3>
+          <p>
+            School / Intermediate details · Add institution name,
+            qualification and passing year.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container reveal" id="skills">
+      <div class="section-heading">
+        <div class="eyebrow">What I'm learning</div>
+        <h2>Technical Skills</h2>
+
+        <p class="section-intro">
+          These are beginner-level skills and learning areas.
+          Update the list to reflect your actual experience.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="skill-list">
+          <span class="skill">HTML5</span>
+          <span class="skill">CSS3</span>
+          <span class="skill">Responsive Design</span>
+          <span class="skill">Python Basics</span>
+          <span class="skill">Problem Solving</span>
+          <span class="skill">Git Basics — learning</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="container reveal" id="hobbies">
+      <div class="section-heading">
+        <div class="eyebrow">Outside class</div>
+        <h2>Hobbies & Interests</h2>
+      </div>
+
+      <div class="card-grid">
+        <article class="card">
+          <div class="icon">💻</div>
+          <h3>Exploring Technology</h3>
+          <p>Discovering apps, websites and new digital tools.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">🎵</div>
+          <h3>Listening to Music</h3>
+          <p>Taking a break and enjoying music in my free time.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">📘</div>
+          <h3>Learning New Things</h3>
+          <p>Practicing new concepts and improving a little every day.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="container reveal" id="projects">
+      <div class="section-heading">
+        <div class="eyebrow">Practice in action</div>
+        <h2>Projects</h2>
+
+        <p class="section-intro">
+          Sample academic projects. Replace these with your own work
+          and add project links when available.
+        </p>
+      </div>
+
+      <div class="card-grid">
+        <article class="card">
+          <div class="project-top">
+            <span class="icon">🌐</span>
+            <span class="project-number">01</span>
+          </div>
+
+          <h3>Personal Portfolio Website</h3>
+          <p>
+            A responsive personal website made with HTML and CSS
+            to present a profile, skills and contact details.
+          </p>
+
+          <div class="tag-row">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">Responsive</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="project-top">
+            <span class="icon">🎓</span>
+            <span class="project-number">02</span>
+          </div>
+
+          <h3>College Information Website</h3>
+          <p>
+            A sample college webpage with course cards, campus
+            facilities and an admissions information section.
+          </p>
+
+          <div class="tag-row">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS Grid</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="project-top">
+            <span class="icon">📚</span>
+            <span class="project-number">03</span>
+          </div>
+
+          <h3>Online Learning Platform</h3>
+          <p>
+            A course interface with learning cards, instructor
+            details and progress indicators.
+          </p>
+
+          <div class="tag-row">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="container reveal" id="achievements">
+      <div class="section-heading">
+        <div class="eyebrow">Progress so far</div>
+        <h2>Achievements & Goals</h2>
+      </div>
+
+      <div class="card">
+        <ul>
+          <li>
+            Created sample webpages for a web development
+            activity-based learning assignment.
+          </li>
+          <li>
+            Practiced organizing content with semantic HTML
+            and responsive CSS layouts.
+          </li>
+          <li>
+            Next goal: build more interactive projects and
+            strengthen JavaScript fundamentals.
+          </li>
+        </ul>
+
+        <p class="form-note">
+          Add any real awards, certificates, competition results
+          or academic achievements you have earned.
+        </p>
+      </div>
+    </section>
+
+    <section class="container reveal" id="resume">
+      <div class="section-heading">
+        <div class="eyebrow">Background at a glance</div>
+        <h2>Resume</h2>
+      </div>
+
+      <div class="resume-panel">
+        <div>
+          <h3>Shanmukh Uday — Student Portfolio</h3>
+
+          <p>
+            A short introduction, education, technical skills
+            and project experience.
+          </p>
+
+          <p class="form-note">
+            To provide a real resume download, save your resume
+            as <code>resume.pdf</code> in the same folder as this HTML file.
+          </p>
+        </div>
+
+        <a class="button primary" href="resume.pdf" download>
+          Download Resume PDF ↓
+        </a>
+      </div>
+    </section>
+
+    <section class="container reveal" id="contact">
+      <div class="section-heading">
+        <div class="eyebrow">Let's connect</div>
+        <h2>Contact Information</h2>
+
+        <p class="section-intro">
+          The email below is a placeholder. Replace it with your
+          preferred contact details.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="card">
+          <h3>Contact Details</h3>
+
+          <a class="contact-link" href="mailto:yourname@example.com">
+            ✉️ yourname@example.com
+          </a>
+
+          <p class="contact-link">📍 Andhra Pradesh, India</p>
+
+          <a class="contact-link" href="#home">↑ Back to top</a>
+        </div>
+
+        <div class="card">
+          <h3>Send a Message</h3>
+
+          <form id="contactForm">
+            <label for="name">
+              Your name
+              <input id="name" name="name" autocomplete="name"
+                required placeholder="Enter your name">
+            </label>
+
+            <label for="email">
+              Your email
+              <input id="email" name="email" type="email"
+                autocomplete="email" required placeholder="you@example.com">
+            </label>
+
+            <label for="message">
+              Message
+              <textarea id="message" name="message" required
+                placeholder="Write your message"></textarea>
+            </label>
+
+            <button class="button primary" type="submit">
+              Prepare Email ↗
+            </button>
+
+            <p class="form-note" id="formStatus" role="status">
+              This form opens your email app; it does not send
+              or store messages by itself.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      © <span id="year"></span> Shanmukh Uday · Built with HTML, CSS & JavaScript
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+
+      menuToggle.setAttribute('aria-expanded', String(open));
+      menuToggle.textContent = open ? '✕ Close' : '☰ Menu';
+    });
+
+    navLinks.querySelectorAll('a').forEach(link =>
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.textContent = '☰ Menu';
+      })
+    );
+
+    const sections = document.querySelectorAll('main section[id]');
+    const navItems = navLinks.querySelectorAll('a');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navItems.forEach(link => {
+            link.classList.toggle(
+              'active',
+              link.getAttribute('href') === '#' + entry.target.id
+            );
+          });
+        }
+      });
+    }, {
+      rootMargin: '-35% 0px -55% 0px'
+    });
+
+    sections.forEach(section => observer.observe(section));
+
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12
+    });
+
+    document.querySelectorAll('.reveal').forEach(section => {
+      revealObserver.observe(section);
+    });
+
+    document.getElementById('year').textContent =
+      new Date().getFullYear();
+
+    document.getElementById('contactForm').addEventListener('submit', event => {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      const subject = encodeURIComponent('Portfolio message from ' + name);
+
+      const body = encodeURIComponent(
+        'From: ' + name + ' (' + email + ')\n\n' + message
+      );
+
+      document.getElementById('formStatus').textContent =
+        'Opening your email app with a draft message…';
+
+      window.location.href =
+        'mailto:yourname@example.com?subject=' + subject + '&body=' + body;
+    });
+  </script>
+
+</body>

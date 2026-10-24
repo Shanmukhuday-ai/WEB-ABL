@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LearnHub — Online Learning</title>
+
+<style>
+:root {
+    --blue: #4057f4;
+    --ink: #132044;
+    --muted: #667596;
+    --line: #e5eaf6;
+    --bg: #f7f9ff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+}
+
+button, input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.nav {
+    background: white;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 4%;
+    gap: 20px;
+    position: sticky;
+    top: 0;
+}
+
+.brand {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.brand span {
+    color: var(--blue);
+}
+
+.navlinks {
+    display: flex;
+    gap: 20px;
+}
+
+.nav a {
+    text-decoration: none;
+    color: var(--ink);
+}
+
+.navsearch {
+    padding: 10px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+}
+
+.btn {
+    background: var(--blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 18px;
+}
+
+.hero {
+    background: linear-gradient(100deg, #101c3d, #4057f4);
+    color: white;
+    padding: 45px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.hero h1 {
+    font-size: 42px;
+}
+
+.hero p {
+    line-height: 1.6;
+}
+
+.hero h1 span {
+    color: #7f9cff;
+}
+
+.heroform {
+    display: flex;
+    gap: 10px;
+}
+
+.heroform input {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    flex: 1;
+}
+
+.hero-art {
+    font-size: 80px;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 25px;
+    padding: 25px 3%;
+}
+
+.section {
+    margin-bottom: 30px;
+}
+
+.section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.section h2 {
+    font-size: 22px;
+}
+
+.sub {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.categories {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.category {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 15px 8px;
+    font-weight: bold;
+}
+
+.category .icon {
+    display: block;
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.category.active {
+    background: #eef1ff;
+    color: var(--blue);
+    border-color: var(--blue);
+}
+
+.courses {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.card {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.thumb {
+    height: 130px;
+    background: linear-gradient(135deg, #14233d, #2874ad);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 45px;
+}
+
+.purple {
+    background: linear-gradient(135deg, #4525b8, #a18bff);
+}
+
+.teal {
+    background: linear-gradient(135deg, #087f9a, #69d6d9);
+}
+
+.orange {
+    background: linear-gradient(135deg, #b95a20, #ffbd64);
+}
+
+.cardbody {
+    padding: 14px;
+}
+
+.card h3 {
+    font-size: 16px;
+}
+
+.instructor {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    margin: 12px 0;
+    color: var(--muted);
+}
+
+.rating {
+    color: orange;
+}
+
+.desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+.progressline {
+    height: 6px;
+    background: #e9edf7;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 12px 0;
+}
+
+.progressline span {
+    display: block;
+    height: 100%;
+    background: var(--blue);
+}
+
+.progresslabel {
+    text-align: right;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.card .btn {
+    width: 100%;
+    margin-top: 12px;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.sidecard {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px;
+}
+
+.sidecard h2 {
+    font-size: 18px;
+}
+
+.teacher {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.avatar {
+    background: #e8edff;
+    padding: 12px;
+    border-radius: 50%;
+    font-size: 24px;
+}
+
+.teacher p {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid var(--line);
+    padding-top: 12px;
+    margin-top: 12px;
+    text-align: center;
+}
+
+.stats strong {
+    display: block;
+}
+
+.stats small {
+    color: var(--muted);
+}
+
+.popular {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.popularitem {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.popularicon {
+    font-size: 25px;
+}
+
+.popularitem h4 {
+    font-size: 12px;
+}
+
+.popularitem small {
+    color: var(--muted);
+}
+
+.empty {
+    display: none;
+    padding: 20px;
+    text-align: center;
+    color: var(--muted);
+    grid-column: 1 / -1;
+}
+
+.footer {
+    background: #101c3d;
+    color: white;
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.toast {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #142044;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 8px;
+}
+
+@media (max-width: 1100px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    .courses {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sidebar {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 650px) {
+    .nav {
+        flex-wrap: wrap;
+    }
+
+    .navlinks {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .navsearch {
+        width: 100%;
+    }
+
+    .hero-art {
+        display: none;
+    }
+
+    .heroform {
+        flex-direction: column;
+    }
+
+    .courses,
+    .popular,
+    .sidebar {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="nav">
+    <div class="brand">🎓 Learn<span>Hub</span></div>
+
+    <nav class="navlinks">
+        <a href="#">Home</a>
+        <a href="#courses">Courses</a>
+        <a href="#instructors">Instructors</a>
+        <a href="#about">About</a>
+    </nav>
+
+    <input class="navsearch" id="topSearch"
+           placeholder="Search for courses...">
+
+    <a href="#progress">My Learning</a>
+    <button class="btn" id="signup">Sign Up</button>
+</header>
+
+<section class="hero">
+    <div>
+        <h1>Learn new skills.<br>
+            Build a <span>brighter future.</span>
+        </h1>
+
+        <p>
+            Expert-led courses, practical projects, and a community
+            that helps you grow. Learn at your own pace.
+        </p>
+
+        <form class="heroform" id="searchForm">
+            <input id="courseSearch"
+                   placeholder="Search Python, design, marketing...">
+
+            <button class="btn">Explore Courses →</button>
+        </form>
+    </div>
+
+    <div class="hero-art">💻📚</div>
+</section>
+
+<main class="layout">
+
+<div>
+
+<section class="section">
+    <div class="section-head">
+        <div>
+            <h2>Browse by Category</h2>
+            <div class="sub">Find the right path for your goals</div>
+        </div>
+
+        <button id="allCategories">View all →</button>
+    </div>
+
+    <div class="categories" id="categories">
+
+        <button class="category active" data-category="All">
+            <span class="icon">✨</span>All Courses
+        </button>
+
+        <button class="category" data-category="Programming">
+            <span class="icon">💻</span>Programming
+        </button>
+
+        <button class="category" data-category="Data Science">
+            <span class="icon">📊</span>Data Science
+        </button>
+
+        <button class="category" data-category="Design">
+            <span class="icon">🎨</span>Design
+        </button>
+
+        <button class="category" data-category="Business">
+            <span class="icon">💼</span>Business
+        </button>
+
+        <button class="category" data-category="Marketing">
+            <span class="icon">📣</span>Marketing
+        </button>
+
+    </div>
+</section>
+
+<section class="section" id="courses">
+    <div class="section-head">
+        <div>
+            <h2>Featured Courses</h2>
+            <div class="sub">Handpicked courses to improve your skills</div>
+        </div>
+
+        <span class="sub" id="courseCount">6 courses</span>
+    </div>
+
+    <div class="courses" id="courseGrid">
+
+        <article class="card" data-category="Programming"
+                 data-title="Python for Beginners">
+            <div class="thumb">🐍</div>
+
+            <div class="cardbody">
+                <h3>Python for Beginners</h3>
+                <p class="instructor">👨🏻‍💻 Alex Carter</p>
+
+                <div class="meta">
+                    <span class="rating">★ 4.8</span>
+                    <span>124k students</span>
+                </div>
+
+                <p class="desc">
+                    Learn Python from scratch and build real-world projects.
+                </p>
+
+                <div class="progressline">
+                    <span style="width:42%"></span>
+                </div>
+
+                <div class="progresslabel">42% complete</div>
+
+                <button class="btn enroll"
+                        data-course="Python for Beginners">
+                    Continue Learning →
+                </button>
+            </div>
+        </article>
+
+        <article class="card" data-category="Programming"
+                 data-title="Web Development Bootcamp">
+            <div class="thumb purple">🧑‍💻</div>
+
+            <div class="cardbody">
+                <h3>Web Development Bootcamp</h3>
+                <p class="instructor">👩🏻‍🏫 Sarah Johnson</p>
+
+                <div class="meta">
+                    <span class="rating">★ 4.7</span>
+                    <span>98k students</span>
+                </div>
+
+                <p class="desc">
+                    Learn HTML, CSS and JavaScript by creating websites.
+                </p>
+
+                <div class="progressline">
+                    <span style="width:25%"></span>
+                </div>
+
+                <div class="progresslabel">25% complete</div>
+
+                <button class="btn enroll"
+                        data-course="Web Development Bootcamp">
+                    Continue Learning →
+                </button>
+            </div>
+        </article>
+
+        <article class="card" data-category="Data Science"
+                 data-title="Data Science with Python">
+            <div class="thumb teal">📈</div>
+
+            <div class="cardbody">
+                <h3>Data Science with Python</h3>
+                <p class="instructor">👨🏻‍🔬 David Kim</p>
+
+                <div class="meta">
+                    <span class="rating">★ 4.9</span>
+                    <span>76k students</span>
+                </div>
+
+                <p class="desc">
+                    Explore data analysis and machine learning.
+                </p>
+
+                <div class="progressline">
+                    <span style="width:60%"></span>
+                </div>
+
+                <div class="progresslabel">60% complete</div>
+
+                <button class="btn enroll"
+                        data-course="Data Science with Python">
+                    Continue Learning →
+                </button>
+            </div>
+        </article>
+
+        <article class="card" data-category="Design"
+                 data-title="UI/UX Design Fundamentals">
+            <div class="thumb orange">🖌️</div>
+
+            <div class="cardbody">
+                <h3>UI/UX Design Fundamentals</h3>
+                <p class="instructor">👩🏻‍🎨 Emily Davis</p>
+
+                <div class="meta">
+                    <span class="rating">★ 4.6</span>
+                    <span>54k students</span>
+                </div>
+
+                <p class="desc">
+                    Learn user-centered design and create interfaces.
+                </p>
+
+                <div class="progressline">
+                    <span style="width:30%"></span>
+                </div>
+
+                <div class="progresslabel">30% complete</div>
+
+                <button class="btn enroll"
+                        data-course="UI/UX Design Fundamentals">
+                    Enroll Now →
+                </button>
+            </div>
+        </article>
+
+        <article class="card" data-category="Business"
+                 data-title="Business Essentials">
+            <div class="thumb orange">📊</div>
+
+            <div class="cardbody">
+                <h3>Business Essentials</h3>
+                <p class="instructor">👨🏻‍💼 Michael Lee</p>
+
+                <div class="meta">
+                    <span class="rating">★ 4.7</span>
+                    <span>32k students</span>
+                </div>
+
+                <p class="desc">
+                    Learn strategy, planning and decision-making.
+                </p>
+
+                <div class="progressline">
+                    <span style="width:0%"></span>
+                </div>
+
+                <div class="progresslabel">Not started</div>
+
+                <button class="btn enroll"
+                        data-course="Business Essentials">
+                    Enroll Now →
+                </button>
+            </div>
+        </article>
+
+        <article class="card" data-category="Marketing"
+                 data-title="Digital Marketing Mastery">
+            <div class="thumb purple">📣</div>
+
+            <div class="cardbody">
+                <h3>Digital Marketing Mastery</h3>
+                <p class="instructor">👩🏻‍💼 Priya Sharma</p>
+
+                <div class="meta">
+                    <span class="rating">★ 4.8</span>
+                    <span>82k students</span>
+                </div>
+
+                <p class="desc">
+                    Learn SEO, content strategy and social media marketing.
+                </p>
+
+                <div class="progressline">
+                    <span style="width:0%"></span>
+                </div>
+
+                <div class="progresslabel">Not started</div>
+
+                <button class="btn enroll"
+                        data-course="Digital Marketing Mastery">
+                    Enroll Now →
+                </button>
+            </div>
+        </article>
+
+        <div class="empty" id="empty">
+            No courses found. Try another search.
+        </div>
+
+    </div>
+</section>
+
+<section class="section">
+    <h2>Popular This Week</h2>
+
+    <div class="popular">
+        <div class="popularitem">
+            <div class="popularicon">🟨</div>
+            <div>
+                <h4>JavaScript Essentials</h4>
+                <small>8h 10m · ★ 4.7</small>
+            </div>
+        </div>
+
+        <div class="popularitem">
+            <div class="popularicon">📱</div>
+            <div>
+                <h4>Graphic Design with Canva</h4>
+                <small>5h 40m · ★ 4.8</small>
+            </div>
+        </div>
+    </div>
+</section>
+
+</div>
+
+<aside class="sidebar">
+
+    <section class="sidecard" id="instructors">
+        <h2>Featured Instructor</h2>
+
+        <div class="teacher">
+            <div class="avatar">👨🏻‍🏫</div>
+
+            <div>
+                <strong>Alex Carter</strong>
+                <p>Software Engineer & Educator</p>
+            </div>
+        </div>
+
+        <p class="sub">
+            Teaching practical skills through hands-on projects.
+        </p>
+
+        <div class="stats">
+            <div>
+                <strong>12</strong>
+                <small>Courses</small>
+            </div>
+
+            <div>
+                <strong>245k+</strong>
+                <small>Students</small>
+            </div>
+
+            <div>
+                <strong>★ 4.8</strong>
+                <small>Rating</small>
+            </div>
+        </div>
+
+        <button class="btn" id="profile">View Profile</button>
+    </section>
+
+    <section class="sidecard" id="progress">
+        <h2>Your Learning Progress</h2>
+
+        <p>Courses in progress</p>
+        <p class="sub">Keep going — you're doing great!</p>
+
+        <div id="progressList">
+            <p>Python for Beginners — 42%</p>
+            <div class="progressline">
+                <span style="width:42%"></span>
+            </div>
+
+            <p>Web Development — 25%</p>
+            <div class="progressline">
+                <span style="width:25%"></span>
+            </div>
+
+            <p>Data Science — 60%</p>
+            <div class="progressline">
+                <span style="width:60%"></span>
+            </div>
+        </div>
+    </section>
+
+    <section class="sidecard">
+        <h2>Learning Objectives</h2>
+
+        <p class="sub">✓ Build practical skills</p>
+        <p class="sub">✓ Learn from expert instructors</p>
+        <p class="sub">✓ Track your progress</p>
+        <p class="sub">✓ Practice real-world projects</p>
+    </section>
+
+</aside>
+
+</main>
+
+<footer class="footer" id="about">
+    <span>🎓 <strong>LearnHub</strong> — Learn something new every day.</span>
+    <span>Courses · Instructors · Support · © 2026 LearnHub</span>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const cards = [...document.querySelectorAll('.card[data-category]')];
+const categories = [...document.querySelectorAll('.category')];
+const toast = document.getElementById('toast');
+
+let activeCategory = 'All';
+
+function filterCourses() {
+    const q = (
+        document.getElementById('courseSearch').value ||
+        document.getElementById('topSearch').value
+    ).toLowerCase().trim();
+
+    let shown = 0;
+
+    cards.forEach(card => {
+        const okCategory =
+            activeCategory === 'All' ||
+            card.dataset.category === activeCategory;
+
+        const okText =
+            !q ||
+            card.dataset.title.toLowerCase().includes(q) ||
+            card.innerText.toLowerCase().includes(q);
+
+        card.style.display =
+            okCategory && okText ? '' : 'none';
+
+        if (okCategory && okText) {
+            shown++;
+        }
+    });
+
+    document.getElementById('empty').style.display =
+        shown ? 'none' : 'block';
+
+    document.getElementById('courseCount').textContent =
+        shown + ' course' + (shown === 1 ? '' : 's');
+}
+
+categories.forEach(btn => {
+    btn.addEventListener('click', () => {
+        categories.forEach(b => b.classList.remove('active'));
+
+        btn.classList.add('active');
+        activeCategory = btn.dataset.category;
+
+        filterCourses();
+    });
+});
+
+document.getElementById('allCategories').addEventListener('click', () => {
+    categories[0].click();
+});
+
+document.getElementById('searchForm').addEventListener('submit', event => {
+    event.preventDefault();
+
+    document.getElementById('topSearch').value =
+        document.getElementById('courseSearch').value;
+
+    filterCourses();
+
+    document.getElementById('courses').scrollIntoView({
+        behavior: 'smooth'
+    });
+});
+
+['topSearch', 'courseSearch'].forEach(id => {
+    document.getElementById(id).addEventListener('input', filterCourses);
+});
+
+function showToast(message) {
+    toast.textContent = message;
+    toast.style.display = 'block';
+
+    clearTimeout(window.toastTimer);
+
+    window.toastTimer = setTimeout(() => {
+        toast.style.display = 'none';
+    }, 3000);
+}
+
+document.querySelectorAll('.enroll').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const card = btn.closest('.card');
+        const label = card.querySelector('.progresslabel');
+
+        if (label.textContent === 'Not started') {
+            label.textContent = '0% complete';
+            btn.textContent = 'Continue Learning →';
+
+            showToast('You are enrolled in ' + btn.dataset.course + '!');
+        } else {
+            showToast('Opening your lesson: ' + btn.dataset.course);
+        }
+    });
+});
+
+document.getElementById('signup').addEventListener('click', () => {
+    showToast('Sign-up demo: connect an account system to enable registration.');
+});
+
+document.getElementById('profile').addEventListener('click', () => {
+    showToast('Alex Carter — 12 courses · 245k+ learners.');
+});
+</script>
+
+</body>
+</html>
